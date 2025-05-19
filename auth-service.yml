@@ -1,11 +1,34 @@
+#auth-service.yml
 server:
   port:8081
 
 spring:
-  application:
-    name:auth-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/auth_db
+    username: root
+    password: D12S24@asc
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+jwt:
+  secret: 95130c5956d3ae72c9336cf5b7f072027224787b94bf59ab6968f0a11be6ceacc3a0c21a371ee2675958e78ac46cc728df7912f230f6d83e3df6b9182be2aa2710bc2f5d159cc2128a354f2405607daf3a90b97ee58af5842fafe5dd5d4be4c34fbebec1a6729dbfead7fc9553eebfa5132d9ee584a061a7c49e5aa18bfabb40b283a17515328122a9ff17a3de8529b52ac52ca7458d4de86124b2e848890267c777ec9f1ee9fe8742f0b640ff012eadc8f21421aa86debb0e70fd7905d94b0829b4e2c621e163a12ec222fd11b0bd6f32a53fe4b433ca08483247f7ffe03dd8d03790b5d4c3a739946e1db134ff4263f3cac40e7e5ab75bd59b6b68c829077b
+  expiration: 86400000
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+spring:
+  application:
+    name: auth-service
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
